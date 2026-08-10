@@ -3,7 +3,7 @@
 
 
 variable "project_name" {
-  description = "NAME_PROJECT_HERE" # update accordingly
+  description = "PROJECT_NAME_HERE" # update accordingly
   type = string
 }
 
