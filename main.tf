@@ -2,6 +2,10 @@
 # Root Terraform main config file for this IaC repo. Uses root variables.tf to format this script.
 
 terraform {
+  ### -----------------------------------------------
+  ### --- ADD BACKEND BLOCK (from README.md) HERE ---
+  ### -----------------------------------------------
+
   required_version = ">= 1.10"
 
   required_providers {
