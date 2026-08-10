@@ -3,11 +3,13 @@
 
 
 variable "project_name" {
-  description = "PROJECT_NAME_HERE" # update accordingly
-  type = string
+  description = "Name of your project ...will prefix your bucket name."
+  type        = string
+  default     = "my-project"
 }
 
 variable "aws_region" {
-  description = "us-east-1" # update accordingly
+  description = "Name your desired region ...will be where the bucket lives."
   type        = string
+  default     = "us-east-1"
 }
