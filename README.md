@@ -17,6 +17,7 @@ Backend:    tf-state-backend --> S3 bucket + native lock (run ONCE, first)
 | `main.tf`      | Root config ...the state S3 bucket and its versioning           |
 | `variables.tf` | Root input variables (fill via `terraform.tfvars`)              |
 | `outputs.tf`   | Exposes the bucket name for an other repo's backend config      |
+| `terraform.tfvars.example` | Template for your values, copy to `terraform.tfvars` |
 | `.gitignore`   | Keeps state, tfvars, and `.terraform/` out of git               |
 
 
@@ -27,9 +28,11 @@ Requires Terraform **>= 1.10** and AWS credentials configured (`aws configure` o
 ```bash
 git clone git@github.com:geomux/tf-state-backend.git
 cd tf-state-backend
-terraform init      # local state, the bucket does not exist yet
-terraform plan      # creates dialogue for what apply will do
-terraform apply     # creates the S3 bucket
+cp terraform.tfvars.example terraform.tfvars    # fill in your values
+terraform init                                  # local state, the bucket does not exist yet
+terraform validate                              # checks config for errors (e.g. your terraform.tfvars values are acceptable format)
+terraform plan                                  # creates dialogue for what apply will do
+terraform apply                                 # creates the S3 bucket
 ```
 
 This repo bootstraps its own backend, so it runs on a **local state file**. Every other repo/project then points at the bucket name from `terraform output`.
