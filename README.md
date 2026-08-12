@@ -62,10 +62,13 @@ Then copy & re-initialize *see bash cmds below*.
 cp terraform.tfstate terraform.tfstate.bak
 terraform init -migrate-state
 ```
+*The cmds above will make a backup and migrate the state file to the s3 bucket*
+The .bak file is optional to keep. Delete or keep the local copy.
+
 
 ## Project Status
 
 - [x] Create state backend repo
 - [x] Root Terraform scaffolding (main / variables / outputs)
-- [ ] Declare `project_name` and move resources to root level (see main.tf)
-- [ ] `terraform apply` --> S3 bucket live
+- [x] Declare `project_name` and move resources to root level (see main.tf)
+- [x] `terraform apply` --> S3 bucket live
