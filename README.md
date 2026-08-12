@@ -49,7 +49,7 @@ Add this backend block to `main.tf`, **see note at the top of main.tf** filling 
   backend "s3" {
     bucket       = "BUCKET_NAME_HERE"
     key          = "tf-state-backend/terraform.tfstate"
-    region       = "var.aws_region"
+    region       = "us-east-1"
     use_lockfile = true
   }
 ```
