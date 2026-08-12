@@ -23,7 +23,8 @@ Backend:    tf-state-backend --> S3 bucket + native lock (run ONCE, first)
 
 ## User Guide | Usage
 
-Requires Terraform **>= 1.10** and AWS credentials configured (`aws configure` or env vars).
+> [!IMPORTANT]
+>Requires Terraform **>= 1.10** and AWS credentials configured (`aws configure` or env vars).
 
 ```bash
 git clone git@github.com:geomux/tf-state-backend.git
