@@ -58,13 +58,20 @@ Add this backend block to `main.tf`, **see note at the top of main.tf** filling 
 Then copy & re-initialize *see bash cmds below*.
 
 [NOTE]
-> Keep a local copy, just in case
+> Keep a local .bak copy, just in case
+
 ```bash
 cp terraform.tfstate terraform.tfstate.bak
 terraform init -migrate-state
+r "yes" to copy state to the new s3 bucket backend
 ```
 *The cmds above will make a backup and migrate the state file to the s3 bucket*
-The .bak file is optional to keep. Delete or keep the local copy.
+
+> [!IMPORTANT]
+> Only after migrating .tfstate to S3, you may delete the local copies.
+```bash
+rm terraform.tfstate terraform.tfstate.bak terraform.tfstate.backup
+```
 
 
 ## Project Status
