@@ -39,11 +39,9 @@ resource "aws_s3_bucket" "state" {
   tags = {
     Name = "tf-state-backend Bucket"
   }
-
-  ### !!! TEMPORARILY DISABLED FOR TEARDOWN — RESTORE BEFORE THE NEXT APPLY !!!
-  # lifecycle {
-  #   prevent_destroy = true # CRUCIAL for "terraform destroy" erroring msg'ing Vs. destroying S3 bucket with state file in it
-  # }
+  lifecycle {
+    prevent_destroy = true # CRUCIAL for "terraform destroy" to erroring msg instead of destroying S3 bucket with state file in it
+  }
 }
 
 ### ------------------------------
