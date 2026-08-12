@@ -57,7 +57,7 @@ resource "aws_s3_bucket_versioning" "state" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
-  bucket = "${var.project_name}-tfstate-${data.aws_caller_identity.current.account_id}"
+  bucket = aws_s3_bucket.state.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -67,7 +67,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
 }
 
 resource "aws_s3_bucket_public_access_block" "state" {
-  bucket = "${var.project_name}-tfstate-${data.aws_caller_identity.current.account_id}"
+  bucket = aws_s3_bucket.state.id
 
   block_public_acls       = true
   block_public_policy     = true
