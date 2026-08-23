@@ -29,7 +29,8 @@ Backend:    tf-state-backend --> S3 bucket + native lock (run ONCE, first)
 ```bash
 git clone git@github.com:geomux/tf-state-backend.git
 cd tf-state-backend
-cp terraform.tfvars.example terraform.tfvars    # fill in your values
+cp terraform.tfvars.example terraform.tfvars    # copy .example to functional .tfvars
+nano terraform.tfvars                           # fill in your values
 terraform init                                  # local state, the bucket does not exist yet
 terraform validate                              # checks config for errors (e.g. your terraform.tfvars values are acceptable format)
 terraform plan                                  # creates dialogue for what apply will do
@@ -39,6 +40,16 @@ terraform apply                                 # creates the S3 bucket
 This repo bootstraps its own backend, so it runs on a **local state file**. Every other repo/project then points at the bucket name from `terraform output`.
 
 The bucket sets `prevent_destroy`, so `terraform destroy` errors on purpose. This safety catch stops you from deleting the bucket your other project's Terraform state file lives in.
+
+> [!NOTE]
+> If you need to tear down this cloud storage bucket, you may edit 'prevent_destroy' (= false) policy in main.tf.
+> Save, then from the repo folder run the terminal commands below.
+*To destroy bucket... after changing 'prevent_destroy' policy, you may run these commands in terminal*
+```bash
+terraform init
+terraform apply
+terraform destroy
+```
 
 
 ## User Guide | *Moving the Local State File Into the Bucket*
